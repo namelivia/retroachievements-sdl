@@ -9,13 +9,10 @@ class RetroAchievementsWebApiClient:
         self.ra_api_key = api_key
 
     def _AuthQS(self):
-        return "?z=" + self.ra_user + "&y=" + self.ra_api_key
+        return f"?z={self.ra_user}&y={self.ra_api_key}"
 
     def _GetRAURL(self, target, params=""):
-        print(self.API_URL + target + self._AuthQS() + f"&{params}")
-        return requests.get(
-            self.API_URL + target + self._AuthQS() + f"&{params}"
-        ).json()
+        return requests.get(f"{self.API_URL}{target}{self._AuthQS()}&{params}").json()
 
     def GetTopTenUsers(self):
         return self._GetRAURL("API_GetTopTenUsers.php")
@@ -30,22 +27,22 @@ class RetroAchievementsWebApiClient:
         return self._GetRAURL("API_GetConsoleIDs.php")
 
     def GetGameList(self, consoleID):
-        return self._GetRAURL("API_GetGameList.php", "i=consoleID")
+        return self._GetRAURL("API_GetGameList.php", f"i={consoleID}")
 
     def GetFeedFor(self, user, count, offset=0):
-        return self._GetRAURL("API_GetFeed.php", "u=user&c=count&o=offset")
+        return self._GetRAURL("API_GetFeed.php", f"u={user}&c={count}&o={offset}")
 
     def GetUserRankAndScore(self, user):
-        return self._GetRAURL("API_GetUserRankAndScore.php", "u=user")
+        return self._GetRAURL("API_GetUserRankAndScore.php", f"u={user}")
 
     def GetUserProgress(self, user, gameIDCSV):
         return self._GetRAURL(
-            "API_GetUserProgress.php", "u=user&i=" + gameIDCSV.strip()
+            "API_GetUserProgress.php", f"u={user}&i={gameIDCSV.strip()}"
         )
 
     def GetUserRecentlyPlayedGames(self, user, count, offset=0):
         return self._GetRAURL(
-            "API_GetUserRecentlyPlayedGames.php", "u=user&c=count&o=offset"
+            "API_GetUserRecentlyPlayedGames.php", f"u={user}&c={count}&o={offset}"
         )
 
     def GetUserSummary(self, user, numRecentGames):
@@ -54,11 +51,13 @@ class RetroAchievementsWebApiClient:
         )
 
     def GetGameInfoAndUserProgress(self, user, gameID):
-        return self._GetRAURL("API_GetGameInfoAndUserProgress.php", "u=user&g=gameID")
+        return self._GetRAURL(
+            "API_GetGameInfoAndUserProgress.php", "u={user}&g={gameID}"
+        )
 
     def GetAchievementsEarnedOnDay(self, user, dateInput):
         return self._GetRAURL(
-            "API_GetAchievementsEarnedOnDay.php", "u=user&d=dateInput"
+            "API_GetAchievementsEarnedOnDay.php", "u={user}&d={dateInput}"
         )
 
     def GetAchievementsEarnedBetween(self, user, dateStart, dateEnd):
@@ -69,4 +68,4 @@ class RetroAchievementsWebApiClient:
         )
 
     def GetUserGamesCompleted(self, user):
-        return self._GetRAURL("API_GetUserCompletedGames.php", "u=user")
+        return self._GetRAURL("API_GetUserCompletedGames.php", "u={user}")
