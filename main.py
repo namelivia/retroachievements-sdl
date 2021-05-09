@@ -3,8 +3,9 @@ from dotenv import load_dotenv
 import sdl2.ext
 from retroachievements.client import RetroAchievementsWebApiClient
 
-# from retroachievements.screens.user_profile import UserProfile
-from retroachievements.screens.main_menu import MainMenu
+from retroachievements.screens.user_profile import UserProfile
+
+# from retroachievements.screens.main_menu import MainMenu
 
 
 if __name__ == "__main__":
@@ -21,7 +22,7 @@ if __name__ == "__main__":
     )
     renderer = sdl2.ext.Renderer(window)
     running = True
-    screen = MainMenu(renderer, data)
+    screen = UserProfile(renderer, data)
     tick = 0
 
     while running:

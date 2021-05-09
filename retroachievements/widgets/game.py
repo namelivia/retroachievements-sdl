@@ -12,6 +12,6 @@ class Game:
             Text(self.renderer, x + 120, y + 50, "LastPlayed: " + data["LastPlayed"]),
         ]
 
-    def run(self):
-        [element.update() for element in self.elements]
+    def run(self, tick):
+        [element.update(tick) for element in self.elements]
         [element.draw() for element in self.elements]

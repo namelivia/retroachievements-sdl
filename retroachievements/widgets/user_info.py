@@ -15,6 +15,6 @@ class UserInfo:
             ),
         ]
 
-    def run(self):
-        [element.update() for element in self.elements]
+    def run(self, tick):
+        [element.update(tick) for element in self.elements]
         [element.draw() for element in self.elements]

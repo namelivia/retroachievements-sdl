@@ -61,6 +61,6 @@ class UserProfile:
             ),
         ]
 
-    def run(self):
+    def run(self, tick):
         self.renderer.clear(0)
-        [widget.run() for widget in self.widgets]
+        [widget.run(tick) for widget in self.widgets]
