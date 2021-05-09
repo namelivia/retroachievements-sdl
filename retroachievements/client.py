@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 
 class RetroAchievementsWebApiClient:
@@ -8,64 +9,70 @@ class RetroAchievementsWebApiClient:
         self.ra_user = user
         self.ra_api_key = api_key
 
-    def _AuthQS(self):
+    def _AuthQS(self) -> str:
         return f"?z={self.ra_user}&y={self.ra_api_key}"
 
-    def _GetRAURL(self, target, params=""):
+    def _GetRAURL(self, target: str, params: str = "") -> dict:
         return requests.get(f"{self.API_URL}{target}{self._AuthQS()}&{params}").json()
 
-    def GetTopTenUsers(self):
+    def GetTopTenUsers(self) -> dict:
         return self._GetRAURL("API_GetTopTenUsers.php")
 
-    def GetGameInfo(self, gameID):
+    def GetGameInfo(self, gameID: str) -> dict:
         return self._GetRAURL("API_GetGame.php", f"i={gameID}")
 
-    def GetGameInfoExtended(self, gameID):
+    def GetGameInfoExtended(self, gameID: str) -> dict:
         return self._GetRAURL("API_GetGameExtended.php", f"i={gameID}")
 
-    def GetConsoleIDs(self):
+    def GetConsoleIDs(self) -> dict:
         return self._GetRAURL("API_GetConsoleIDs.php")
 
-    def GetGameList(self, consoleID):
+    def GetGameList(self, consoleID: str) -> dict:
         return self._GetRAURL("API_GetGameList.php", f"i={consoleID}")
 
-    def GetFeedFor(self, user, count, offset=0):
+    def GetFeedFor(self, user: str, count: int, offset: int = 0) -> dict:
         return self._GetRAURL("API_GetFeed.php", f"u={user}&c={count}&o={offset}")
 
-    def GetUserRankAndScore(self, user):
+    def GetUserRankAndScore(self, user: str) -> dict:
         return self._GetRAURL("API_GetUserRankAndScore.php", f"u={user}")
 
-    def GetUserProgress(self, user, gameIDCSV):
+    def GetUserProgress(self, user: str, gameIDCSV: str) -> dict:
         return self._GetRAURL(
             "API_GetUserProgress.php", f"u={user}&i={gameIDCSV.strip()}"
         )
 
-    def GetUserRecentlyPlayedGames(self, user, count, offset=0):
+    def GetUserRecentlyPlayedGames(
+        self, user: str, count: int, offset: int = 0
+    ) -> dict:
         return self._GetRAURL(
             "API_GetUserRecentlyPlayedGames.php", f"u={user}&c={count}&o={offset}"
         )
 
-    def GetUserSummary(self, user, numRecentGames):
+    def GetUserSummary(self, user: str, numRecentGames: int) -> dict:
         return self._GetRAURL(
             "API_GetUserSummary.php", f"u={user}&g={numRecentGames}&a=5"
         )
 
-    def GetGameInfoAndUserProgress(self, user, gameID):
+    def GetGameInfoAndUserProgress(self, user: str, gameID: str) -> dict:
         return self._GetRAURL(
-            "API_GetGameInfoAndUserProgress.php", "u={user}&g={gameID}"
+            "API_GetGameInfoAndUserProgress.php", f"u={user}&g={gameID}"
         )
 
-    def GetAchievementsEarnedOnDay(self, user, dateInput):
+    def GetAchievementsEarnedOnDay(self, user: str, dateInput: datetime) -> dict:
+        date = dateInput.strftime("%s")
+
         return self._GetRAURL(
-            "API_GetAchievementsEarnedOnDay.php", "u={user}&d={dateInput}"
+            "API_GetAchievementsEarnedOnDay.php", f"u={user}&d={date}"
         )
 
-    def GetAchievementsEarnedBetween(self, user, dateStart, dateEnd):
+    def GetAchievementsEarnedBetween(
+        self, user: str, dateStart: datetime, dateEnd: datetime
+    ) -> dict:
         dateFrom = dateStart.strftime("%s")
         dateTo = dateEnd.strftime("%s")
         return self._GetRAURL(
             "API_GetAchievementsEarnedBetween.php", f"u=user&f={dateFrom}&t={dateTo}"
         )
 
-    def GetUserGamesCompleted(self, user):
-        return self._GetRAURL("API_GetUserCompletedGames.php", "u={user}")
+    def GetUserGamesCompleted(self, user: str) -> dict:
+        return self._GetRAURL("API_GetUserCompletedGames.php", f"u={user}")
