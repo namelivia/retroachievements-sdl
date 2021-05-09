@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import sdl2.ext
 from retroachievements.client import RetroAchievementsWebApiClient
 
@@ -7,6 +8,7 @@ from retroachievements.screens.main_menu import MainMenu
 
 
 if __name__ == "__main__":
+    load_dotenv()
     client = RetroAchievementsWebApiClient(
         os.environ["RETROACHIEVEMENTS_USERNAME"],
         os.environ["RETROACHIEVEMENTS_KEY"],
