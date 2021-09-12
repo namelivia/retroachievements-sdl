@@ -41,11 +41,11 @@
         },
         "pysdl2": {
             "hashes": [
-                "sha256:239a204975f30d3f532fe954baf1dac523b13cba08886140e62c96fdf8b700dc",
-                "sha256:4dfa3168e4e4e9301a2cd5904bdcea15e2bf62a1c9abb5d3f92d9122ea22c26e"
+                "sha256:45879ae588038d7cf7cb0289ae47af60722b394d0efa527bf4327103dc4dc918",
+                "sha256:af5af5e6501934ca98d4344bd3362b076828e5cb6698af64db7d1b72353b4580"
             ],
             "index": "pypi",
-            "version": "==0.9.8"
+            "version": "==0.9.9"
         },
         "python-dotenv": {
             "hashes": [
