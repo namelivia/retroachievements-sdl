@@ -115,10 +115,10 @@
         },
         "pysdl2": {
             "hashes": [
-                "sha256:908a7de3a88c2b22a2c21a69917c532152895bd1a490527a270ee14cad40e647"
+                "sha256:1027406badbecdd30fe56e800a5a76ad7d7271a3aec0b7acf780ee26a00f2d40"
             ],
             "index": "pypi",
-            "version": "==0.9.15"
+            "version": "==0.9.16"
         },
         "python-dotenv": {
             "hashes": [
@@ -375,11 +375,11 @@
         },
         "typing-extensions": {
             "hashes": [
-                "sha256:16224afa8cc2b3679dd9e9a1efe719dd2e20a03f0cc2e4cc4c97870ae9622532",
-                "sha256:3c2c2cd887648efa0ea8f8ba4260a1213058e8e4a25a6a6f4e084740b2c858e2"
+                "sha256:5d8c9dac95c27d20df12fb1d97b9793ab8b2af8a3a525e68c80e21060c161771",
+                "sha256:935ccf31549830cda708b42289d44b6f74084d616a00be651601a4f968e77c82"
             ],
             "markers": "python_version < '3.10'",
-            "version": "==4.7.0rc1"
+            "version": "==4.7.0"
         },
         "virtualenv": {
             "hashes": [
